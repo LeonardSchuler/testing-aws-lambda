@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+    aws-lambda-service:
+        #image: "amazonlinux:2017.09.1.20180409"
+        image: "lambci/docker-lambda:python3.6"
+        container_name: "local-lambda"
+        #volumes:
+        #    - ./:/usr/src/app
+        #ports:
+        #    - 8001:8000
+        #depends_on:
