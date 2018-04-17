@@ -13,4 +13,24 @@ services:
             - ./program:/var/task
         #ports:
         #    - 8001:8000
-        #depends_on:
+        depends_on:
+            - "aws-s3-service"
+            - "link-service"
+        environment:
+            - AWS_REGION="eu-central-1"
+
+    aws-s3-service:
+        # https://hub.docker.com/r/lphoward/fake-s3/
+        # does not implement good tag system. latest is truly the latest tag
+        image: "lphoward/fake-s3:latest"
+        # container runs fake-s3 server from: https://github.com/jubos/fake-s3
+        container_name: "local-s3"
+        # exposes port 4569 to other containers per default
+        ports:
+            - 4569:4569
+        
+    link-service:
+        image: "python:3.6.4-jessie"
+        container_name: "s3-lambda-link"
+        # prevents container from exiting
+        entrypoint: ["/usr/bin/tail", "-f", "/dev/null"]

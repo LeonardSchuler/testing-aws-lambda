@@ -1,8 +1,8 @@
-def greeting(name):
+def strong_greeting(name):
     """TODO: Docstring for function.
 
     :name: TODO
     :returns: TODO
 
     """
-    return "hello " + name
+    return "Hello " + name + "! Nice to meet you."
