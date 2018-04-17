@@ -2,11 +2,15 @@ version: '3'
 
 services:
     aws-lambda-service:
+        # https://hub.docker.com/r/lambci/lambda/
+        # https://github.com/lambci/docker-lambda
+        # automatically tests lambda function
+        image: "lambci/lambda:python3.6"
+        # alternative image from amazon without automatic functionality provided by above image
         #image: "amazonlinux:2017.09.1.20180409"
-        image: "lambci/docker-lambda:python3.6"
         container_name: "local-lambda"
-        #volumes:
-        #    - ./:/usr/src/app
+        volumes:
+            - ./program:/var/task
         #ports:
         #    - 8001:8000
         #depends_on:
